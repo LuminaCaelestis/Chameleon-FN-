@@ -1,0 +1,10 @@
+﻿{
+  "Author": "moewcorp",
+  "Name": "Chameleon",
+  "InternalName": "Chameleon",
+  "Description": "Just install for cheating moew~",
+  "ApplicableVersion": "any",
+  "RepoUrl": "https://github.com/moewcorp/Chameleon",
+  "DalamudApiLevel": 8,
+  "LoadPriority": 233
+}
