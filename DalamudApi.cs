@@ -116,6 +116,9 @@ namespace Chameleon
         //[RequiredVersion("1.0")]
         public static ToastGui ToastGui { get; private set; }
 
+
+        public static Configuration Configuration { get; private set; }
+
         [PluginService]
         public static AetheryteList AetheryteList { get; private set; }
 
@@ -150,8 +153,8 @@ namespace Chameleon
 
         public static void Initialize(IDalamudPlugin plugin, DalamudPluginInterface pluginInterface) { 
             _ = new DalamudApi(plugin, pluginInterface);
-            //Configuration = pluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
-            //Configuration.Initialize(pluginInterface);
+            Configuration = pluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
+            Configuration.Initialize(pluginInterface);
 
         }
 

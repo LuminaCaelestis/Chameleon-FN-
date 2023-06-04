@@ -54,8 +54,9 @@ namespace Chameleon
             if (DalamudApi.ClientState.LocalPlayer && address == DalamudApi.ClientState.LocalPlayer?.Address && target[0] != 0)
             {
                 PluginLog.Log($"Faking: {System.Text.Encoding.UTF8.GetString(target)}");
-                for (int i = 0; i < 64; i++) ((byte*)name)[i] = target[i];
-                return UpdatePlayerCharaNameHook.Original(address, name);
+                var ptr = stackalloc byte[64];
+                for (int i = 0; i < 64; i++) ptr[i] = target[i];
+                return UpdatePlayerCharaNameHook.Original(address, (nint)ptr);
             }
             else
                 return UpdatePlayerCharaNameHook.Original(address, name);
@@ -85,17 +86,21 @@ namespace Chameleon
             UpdatePlayerCharaNameHook.Enable();
 
             Init();
-            DalamudApi.ClientState.Login += Reset;
+            DalamudApi.ClientState.Login += LoginInit;
         }
 
-        public void Reset(object? sender, EventArgs e) => Init();
+        public void LoginInit(object? sender, EventArgs e) => Init();
         public unsafe void Init()
         {
             if (DalamudApi.ClientState.IsLoggedIn)
             {
                 backup = MemoryHelper.ReadRaw((nint)((GameObject*)DalamudApi.ObjectTable[0].Address)->Name, 64);
-                //CopyBytes(inputs, DalamudApi.Configuration.FakeName, 64);
-                CopyBytes(inputs, backup, 64);
+                if (DalamudApi.Configuration.FakeName[0] == 0)
+                {
+                    CopyBytes( DalamudApi.Configuration.FakeName,backup, 64);
+                }
+                CopyBytes(inputs, DalamudApi.Configuration.FakeName, 64);
+                //CopyBytes(inputs, backup, 64);
                 CopyBytes(target, inputs, 64);
                 Refresh();
             }
@@ -122,8 +127,8 @@ namespace Chameleon
 
                 if (ImGui.Button("Apply"))
                 {
-                    //CopyBytes(DalamudApi.Configuration.FakeName, inputs, 64);
-                    //DalamudApi.Configuration.Save();
+                    CopyBytes(DalamudApi.Configuration.FakeName, inputs, 64);
+                    DalamudApi.Configuration.Save();
                     CopyBytes(target, inputs, 64);
                     Refresh();
                 }
@@ -141,28 +146,19 @@ namespace Chameleon
 
             }
         }
-        //private unsafe void SetPlayerName()
-        //{
-        //    //MemoryHelper.WriteRaw((nint)((GameObject*)DalamudApi.ObjectTable[0].Address)->Name, inputs);
-        //        //ring(, new SeStringBuilder().Append(name).Build());
-        //}
-        //private unsafe void GetPlayerName()
-        //{
-        //    //inputs = MemoryHelper.ReadRaw((nint)((GameObject*)DalamudApi.ObjectTable[0].Address)->Name, 64);
-        //}
 
         private unsafe void Refresh()
         {
-            if (DalamudApi.ClientState.IsLoggedIn && SpecialName != IntPtr.Zero)
-                MemoryHelper.WriteRaw(SpecialName, target);
+            if (!DalamudApi.ClientState.LocalPlayer || !DalamudApi.ClientState.IsLoggedIn) return;
+            if (SpecialName != IntPtr.Zero) MemoryHelper.WriteRaw(SpecialName, target);
             var ps = PlayerState.Instance();
             var pc = DalamudApi.ClientState.LocalPlayer?.Address;
             var ptr = stackalloc byte[64];
             for (int i = 0; i < 64; i++) ptr[i] = target[i];
             if ((nint)ps != IntPtr.Zero && UpdatePlayerStatusName != IntPtr.Zero)
                 UpdatePlayerStatusNameDetour((nint)ps, (nint)ptr);
-            //if ((nint)pc != IntPtr.Zero && UpdatePlayerCharaName != IntPtr.Zero)
-                //UpdatePlayerCharaNameDetour((nint)pc, (nint)ptr);
+            if ((nint)pc != IntPtr.Zero && UpdatePlayerCharaName != IntPtr.Zero)
+                UpdatePlayerCharaNameDetour((nint)pc, (nint)ptr);
         }
         public void CopyBytes(byte[] dst, byte[] src, int len)
         {
@@ -171,10 +167,9 @@ namespace Chameleon
         public void Dispose()
         {
             UpdatePlayerCharaNameHook.Disable();
+            UpdatePlayerStatusNameHook.Disable();
             for (int i = 0; i < 64; i++) target[i] = backup[i];
             Refresh();
-            
-            UpdatePlayerStatusNameHook.Disable();
             DalamudApi.Dispose();
         }
 
