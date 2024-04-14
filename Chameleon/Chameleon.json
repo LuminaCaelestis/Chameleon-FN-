@@ -2,9 +2,9 @@
   "Author": "gamous",
   "Name": "Chameleon",
   "InternalName": "Chameleon",
+  "Punchline": "Real fakename in memory",
   "Description": "Real fakename in memory",
   "ApplicableVersion": "any",
   "RepoUrl": "https://github.com/moewcorp/Chameleon",
-  "DalamudApiLevel": 8,
-  "LoadPriority": 0
+  "Tags": ["Fake"]
 }
