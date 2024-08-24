@@ -15,7 +15,7 @@
   "CanUnloadAsync": false,
   "LoadPriority": 0,
   "Punchline": "Real fakename in memory",
-  "AcceptsFeedback": true
+  "AcceptsFeedback": true,
   "DownloadLinkInstall": "https://raw.githubusercontent.com/LuminaCaelestis/Chameleon-FN-/main/Link/latest.zip",
   "DownloadLinkTesting": "https://raw.githubusercontent.com/LuminaCaelestis/Chameleon-FN-/main/Link/latest.zip",
   "DownloadLinkUpdate": "https://raw.githubusercontent.com/LuminaCaelestis/Chameleon-FN-/main/Link/latest.zip",
