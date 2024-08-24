@@ -5,7 +5,7 @@
   "AssemblyVersion": "1.0.0.0",
   "Description": "Real fakename in memory",
   "ApplicableVersion": "any",
-  "RepoUrl": "https://github.com/moewcorp/Chameleon",
+  "RepoUrl": "https://github.com/LuminaCaelestis/Chameleon-FN-",
   "Tags": [
     "Fake"
   ],
@@ -16,7 +16,7 @@
   "LoadPriority": 0,
   "Punchline": "Real fakename in memory",
   "AcceptsFeedback": true
-  "DownloadLinkInstall": "https://github.com/LuminaCaelestis/Chameleon-FN-/main/Link/latest.zip",
-  "DownloadLinkTesting": "https://github.com/LuminaCaelestis/Chameleon-FN-/main/Link/latest.zip",
-  "DownloadLinkUpdate": "https://github.com/LuminaCaelestis/Chameleon-FN-/main/Link/latest.zip",
+  "DownloadLinkInstall": "https://raw.githubusercontent.com/LuminaCaelestis/Chameleon-FN-/main/Link/latest.zip",
+  "DownloadLinkTesting": "https://raw.githubusercontent.com/LuminaCaelestis/Chameleon-FN-/main/Link/latest.zip",
+  "DownloadLinkUpdate": "https://raw.githubusercontent.com/LuminaCaelestis/Chameleon-FN-/main/Link/latest.zip",
 }
