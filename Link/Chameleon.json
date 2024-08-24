@@ -1,22 +1,24 @@
-{
-  "Author": "gamous",
-  "Name": "Chameleon",
-  "InternalName": "Chameleon",
-  "AssemblyVersion": "1.0.0.0",
-  "Description": "Real fakename in memory",
-  "ApplicableVersion": "any",
-  "RepoUrl": "https://github.com/LuminaCaelestis/Chameleon-FN-",
-  "Tags": [
-    "Fake"
-  ],
-  "DalamudApiLevel": 9,
-  "LoadRequiredState": 0,
-  "LoadSync": false,
-  "CanUnloadAsync": false,
-  "LoadPriority": 0,
-  "Punchline": "Real fakename in memory",
-  "AcceptsFeedback": true,
-  "DownloadLinkInstall": "https://github.com/LuminaCaelestis/Chameleon-FN-/releases/download/Test/latest.zip",
-  "DownloadLinkTesting": "https://github.com/LuminaCaelestis/Chameleon-FN-/releases/download/Test/latest.zip",
-  "DownloadLinkUpdate": "https://github.com/LuminaCaelestis/Chameleon-FN-/releases/download/Test/latest.zip",
-}
+[
+  {
+    "Author": "gamous",
+    "Name": "Chameleon",
+    "InternalName": "Chameleon",
+    "AssemblyVersion": "1.0.0.0",
+    "Description": "Real fakename in memory",
+    "ApplicableVersion": "any",
+    "RepoUrl": "https://github.com/LuminaCaelestis/Chameleon-FN-",
+    "Tags": [
+      "Fake"
+    ],
+    "DalamudApiLevel": 9,
+    "LoadRequiredState": 0,
+    "LoadSync": false,
+    "CanUnloadAsync": false,
+    "LoadPriority": 0,
+    "Punchline": "Real fakename in memory",
+    "AcceptsFeedback": true,
+    "DownloadLinkInstall": "https://github.com/LuminaCaelestis/Chameleon-FN-/releases/download/Test/latest.zip",
+    "DownloadLinkTesting": "https://github.com/LuminaCaelestis/Chameleon-FN-/releases/download/Test/latest.zip",
+    "DownloadLinkUpdate": "https://github.com/LuminaCaelestis/Chameleon-FN-/releases/download/Test/latest.zip",
+  }
+]
